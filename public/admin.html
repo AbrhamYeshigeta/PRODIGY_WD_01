@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin · Secure Auth</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <main class="card wide">
+    <div class="row">
+      <h1>Admin Panel</h1>
+      <a href="/dashboard.html">← Dashboard</a>
+    </div>
+    <p class="sub">Admin-only route. Regular users get 403.</p>
+    <button id="load-users">Load all users</button>
+    <pre id="out">—</pre>
+  </main>
+  <script type="module" src="/js/admin.js"></script>
+</body>
+</html>

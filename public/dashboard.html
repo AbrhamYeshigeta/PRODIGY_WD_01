@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard · Secure Auth</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <main class="card wide">
+    <div class="row">
+      <h1>Dashboard</h1>
+      <button id="logout" class="ghost">Log out</button>
+    </div>
+
+    <p class="sub">
+      Signed in as <strong id="uname"></strong> · <span id="uemail"></span>
+      &nbsp;<span id="urole" class="badge"></span>
+    </p>
+
+    <a id="admin-link" href="/admin.html" class="hidden">Go to Admin Panel →</a>
+
+    <section class="panel">
+      <h2>Protected resource</h2>
+      <p class="sub">Only reachable with a valid session cookie.</p>
+      <button id="load">Fetch /api/auth/me</button>
+      <pre id="out">—</pre>
+    </section>
+  </main>
+  <script type="module" src="/js/dashboard.js"></script>
+</body>
+</html>
