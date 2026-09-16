@@ -1,52 +1,196 @@
 :root {
-  --bg: #0f172a; --card: #1e293b; --text: #e2e8f0; --muted: #94a3b8;
-  --accent: #6366f1; --accent-hover: #4f46e5;
-  --danger: #f87171; --success: #4ade80; --border: #334155;
+  --bg: #0f172a;
+  --card: rgba(30, 41, 59, 0.85);
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --accent: #6366f1;
+  --accent-hover: #4f46e5;
+  --danger: #f87171;
+  --success: #4ade80;
+  --border: #334155;
 }
+
 * { box-sizing: border-box; }
-body {
-  margin: 0; min-height: 100vh; display: grid; place-items: center;
-  background: radial-gradient(circle at 20% 20%, #1e293b, #0f172a 60%);
-  color: var(--text); padding: 24px;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
 }
+
+body {
+  display: grid;
+  place-items: center;
+  background: #0f172a;
+  color: var(--text);
+  padding: 24px;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ============================================
+   BLURRED BACKGROUND IMAGE
+   Path matches: public/img/Prodigy_bg.png
+   ============================================ */
+body::before {
+  content: "";
+  position: fixed;
+  inset: -40px;
+  background-image: url('/img/Prodigy_bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(14px) brightness(0.5);
+  z-index: -2;
+}
+
+/* Subtle dark tint for extra contrast */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(99, 102, 241, 0.12),
+    rgba(15, 23, 42, 0.55) 70%
+  );
+  z-index: -1;
+}
+
+/* ============================================
+   CARD
+   ============================================ */
 .card {
-  width: 100%; max-width: 400px; background: var(--card);
-  border: 1px solid var(--border); border-radius: 16px; padding: 32px;
-  box-shadow: 0 20px 50px rgba(0,0,0,.4);
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 .card.wide { max-width: 760px; }
+
 h1 { margin: 0 0 4px; font-size: 1.6rem; }
 h2 { font-size: 1.1rem; margin: 24px 0 12px; }
-.sub { margin: 0 0 24px; color: var(--muted); font-size: .9rem; }
-form { display: grid; gap: 14px; }
-label { display: grid; gap: 6px; font-size: .85rem; color: var(--muted); }
+
+.sub {
+  margin: 0 0 24px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* ============================================
+   FORM
+   ============================================ */
+form {
+  display: grid;
+  gap: 14px;
+}
+
+label {
+  display: grid;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
 input {
-  padding: 11px 13px; border-radius: 9px; border: 1px solid var(--border);
-  background: #0f172a; color: var(--text); font-size: .95rem; outline: none;
-  transition: border-color .15s;
+  padding: 11px 13px;
+  border-radius: 9px;
+  border: 1px solid var(--border);
+  background: rgba(15, 23, 42, 0.7);
+  color: var(--text);
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.15s;
 }
 input:focus { border-color: var(--accent); }
+
 button {
-  padding: 11px 16px; border: none; border-radius: 9px; background: var(--accent);
-  color: #fff; font-weight: 600; font-size: .95rem; cursor: pointer;
-  transition: background .15s;
+  padding: 11px 16px;
+  border: none;
+  border-radius: 9px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.15s;
 }
 button:hover { background: var(--accent-hover); }
-button.ghost { background: transparent; border: 1px solid var(--border); color: var(--muted); }
-button.ghost:hover { border-color: var(--accent); color: var(--text); }
-.msg { min-height: 1.2em; font-size: .87rem; margin: 12px 0 0; }
+
+button.ghost {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--muted);
+}
+button.ghost:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+/* ============================================
+   MESSAGES
+   ============================================ */
+.msg {
+  min-height: 1.2em;
+  font-size: 0.87rem;
+  margin: 12px 0 0;
+}
 .msg.error { color: var(--danger); }
 .msg.success { color: var(--success); }
-.muted { color: var(--muted); font-size: .85rem; text-align: center; margin-top: 20px; }
+
+.muted {
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-align: center;
+  margin-top: 20px;
+}
+
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
-.row { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
-.badge { padding: 3px 10px; border-radius: 99px; font-size: .72rem; font-weight: 700;
-         text-transform: uppercase; background: #334155; }
+
+/* ============================================
+   LAYOUT HELPERS
+   ============================================ */
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.badge {
+  padding: 3px 10px;
+  border-radius: 99px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: #334155;
+}
 .badge.admin { background: #7c3aed; }
-.panel { margin-top: 28px; padding: 18px; border: 1px solid var(--border);
-         border-radius: 12px; background: #0f172a; }
-pre { background: #020617; padding: 14px; border-radius: 9px; overflow: auto;
-      font-size: .8rem; color: #a5f3fc; margin: 12px 0 0; }
+
+.panel {
+  margin-top: 28px;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.6);
+}
+
+pre {
+  background: rgba(2, 6, 23, 0.8);
+  padding: 14px;
+  border-radius: 9px;
+  overflow: auto;
+  font-size: 0.8rem;
+  color: #a5f3fc;
+  margin: 12px 0 0;
+}
+
 .hidden { display: none; }
