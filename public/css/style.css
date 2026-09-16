@@ -193,4 +193,69 @@ pre {
   margin: 12px 0 0;
 }
 
+
+
+/* ============================================
+   PASSWORD — single-line hint
+   ============================================ */
+
+.pw-field {
+  display: grid;
+  gap: 6px;
+}
+
+.pw-field > label {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* The sentence */
+.pw-hint {
+  margin: 2px 0 0;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--muted);
+
+  /* hide until the user focuses the password field */
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease, opacity 0.15s ease, margin 0.2s ease;
+}
+
+.pw-field:focus-within .pw-hint {
+  max-height: 60px;
+  opacity: 1;
+  margin-top: 6px;
+}
+
+/* Natural separators between the parts */
+.pw-hint span {
+  color: inherit;
+  transition: color 0.15s ease;
+}
+
+.pw-hint span + span::before {
+  content: " · ";
+  color: var(--border);
+  margin: 0 2px;
+}
+
+/* Satisfied rule → green */
+.pw-hint span.ok {
+  color: #4ade80;
+}
+
+/* Whole line becomes green + says done */
+.pw-hint.complete::after {
+  content: " ✓ Strong password";
+  color: #4ade80;
+  font-weight: 600;
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
 .hidden { display: none; }

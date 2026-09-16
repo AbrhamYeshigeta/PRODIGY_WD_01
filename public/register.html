@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,24 +9,42 @@
 </head>
 <body>
   <main class="card">
-    <h1>Create account</h1>
-    <p class="sub">Min 8 chars, 1 uppercase, 1 lowercase, 1 number</p>
+    <h1>Create your account</h1>
+    <p class="sub">Join us in less than a minute — all you need is an email.</p>
 
-    <form id="register-form">
+    <form id="register-form" novalidate>
       <label>Username
-        <input type="text" name="username" required minlength="3" autocomplete="username" />
+        <input type="text" name="username" required minlength="3" autocomplete="username" placeholder=" abrham" />
       </label>
+
       <label>Email
-        <input type="email" name="email" required autocomplete="email" />
+        <input type="email" name="email" required autocomplete="email" placeholder="you@example.com" />
       </label>
-      <label>Password
-        <input type="password" name="password" required autocomplete="new-password" />
-      </label>
-      <button type="submit">Sign up</button>
+      <!-- Live password requirements -->
+      <div class="pw-field">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          required
+          autocomplete="new-password"
+          placeholder="Create a strong password"
+        />
+
+        <p class="pw-hint" id="pw-hint" aria-live="polite">
+          <span data-rule="length">8+ characters</span>
+          <span data-rule="upper">an uppercase letter</span>
+          <span data-rule="lower">a lowercase letter</span>
+          <span data-rule="number">a number</span>
+        </p>
+      </div>
+
+      <button type="submit" id="submit-btn">Create account</button>
     </form>
 
-    <p id="msg" class="msg"></p>
-    <p class="muted">Already registered? <a href="/index.html">Sign in</a></p>
+    <p id="msg" class="msg" role="status"></p>
+    <p class="muted">Already have an account? <a href="/index.html">Sign in</a></p>
   </main>
   <script type="module" src="/js/register.js"></script>
 </body>
